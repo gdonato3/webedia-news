@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+body {
+  background-color: whitesmoke;
+}
+
+.App-header {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header img {
+  width: 20%;
+}
+.App-link {
+  color: #61dafb;
+}
+
+.search-input {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 3px 5px gainsboro;
+  padding: 5px;
+  position: absolute;
+  top: 40px;
+  right: 401px;
+}
+
+.search-input:after{
+  content: "a"
+}
+
+.menu {
+  background: white;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 3px 5px gainsboro;
+}
+
+.menu a {
+  padding: 30px;
+  text-transform: uppercase;
+}
