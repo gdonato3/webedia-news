@@ -6,15 +6,16 @@ body {
 }
 
 .App-header {
-  background-color: transparent;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 132px;
 }
 
 .App-header img {
-  width: 20%;
+  margin-top: -63px;
 }
 .App-link {
   color: #61dafb;
@@ -25,23 +26,132 @@ body {
   border: none;
   box-shadow: 0 3px 5px gainsboro;
   padding: 5px;
+  margin-top: 16px;
+  margin-left: 106px;
   position: absolute;
-  top: 40px;
-  right: 401px;
 }
 
-.search-input:after{
-  content: "a"
+.text-blue {
+  color: #7da4e8
+}
+
+.search-input:focus {
+  box-shadow: 0 !important;
 }
 
 .menu {
   background: white;
   width: 100%;
-  padding: 10px;
   box-shadow: 0 3px 5px gainsboro;
+  color: #7da4e8
 }
 
 .menu a {
   padding: 30px;
   text-transform: uppercase;
+}
+
+.mobile-menu {
+  background: white;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -235px;
+  padding-left: 10px;
+  padding-right: 20px;
+  text-align: left;
+  z-index: 2;
+  transition: all 0.5s ease
+}
+
+.z-index-2 {  
+  z-index: 2;
+}
+
+.separator {
+  margin-top: 20px;
+  border: 2px solid gainsboro;
+}
+
+.mobile-menu-item {
+  padding: 10px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.close-menu-btn {
+  color: black;
+  position: fixed;
+  right: 0;
+  background: white;
+  padding: 10px;
+  width: 45px;
+  z-index: 2;
+  margin-right: 40px;
+}
+
+.close-menu-btn:hover {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.search-mobile {
+  right: 0;
+  top: 20px;
+  margin-right: 20px;
+  position: fixed;
+  z-index: 2;
+}
+
+.pagination-button{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.pagination-button.active{
+  background: #7da4e8;
+  color: white !important;
+}
+
+.header-bg {
+  width: 110%!important;
+  background: whitesmoke;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.card {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 992px) {
+  .card-img-top {
+    width: 100%;
+    max-height: 15vw;
+    object-fit: cover;
+  }
+}
+  
+@media only screen and (max-width: 992px) {
+  .App-header img {
+    margin-top: -130px;
+    z-index: 1;
+    position: fixed;
+  }
 }
