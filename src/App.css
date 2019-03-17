@@ -64,6 +64,10 @@ body {
   transition: all 0.5s ease
 }
 
+.mobile-menu-btn {
+  padding-top: 20px;
+}
+
 .z-index-2 {  
   z-index: 2;
 }
@@ -104,12 +108,32 @@ body {
   text-decoration: none !important;
 }
 
-.search-mobile {
+.close-search-btn {
+  color: black;
+  position: fixed;
   right: 0;
-  top: 20px;
+  background: white;
+  top: 11px;
+  padding: 10px;
+  width: 45px;
+  z-index: 2;
+  margin-right: 15px !important;  
+  box-shadow: 0 2px 3px lightgrey;
+}
+
+.close-search-btn:hover {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.search-mobile {
+  right: 25px;
+  top: 15px;;
   margin-right: 20px;
   position: fixed;
   z-index: 2;
+  width: 50px;
+  transition: all 1s ease;
 }
 
 .pagination-button{
@@ -138,6 +162,26 @@ body {
 
 .card {
   cursor: pointer;
+}
+
+.mobile-search-input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px lightgray;
+  padding-left: 45px;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.search-mobile a {
+  margin: 5px;
+  position: fixed;
+}
+
+.search-mobile a svg {
+  width: 25px;
+  margin-left: 6px;
 }
 
 @media only screen and (min-width: 992px) {

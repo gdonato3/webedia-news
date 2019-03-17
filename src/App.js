@@ -28,6 +28,7 @@ class MenuMobile extends Component {
     document.querySelector('.search-mobile').style.zIndex = 0;
     document.querySelector('.App-header img').style.zIndex = 0;
     document.querySelector('body').style.overflow = "hidden";
+    document.querySelector('.header-bg').style.zIndex = 0;
   }
 
   closeMenu () {
@@ -37,6 +38,7 @@ class MenuMobile extends Component {
     document.querySelector('body').style.overflow = "";
     document.querySelector('.App-header img').style.zIndex = 1;
     document.querySelector('.search-mobile').style.zIndex = 1;
+    document.querySelector('.header-bg').style.zIndex = 1;
   }
 
   render () {
@@ -74,11 +76,34 @@ class MenuMobile extends Component {
 }
 
 class SearchMobile extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  openSearch() {
+    document.querySelector('.mobile-search-input').classList.remove('d-none')
+    document.querySelector('.close-search-btn').classList.remove('d-none')
+    document.querySelector('.mobile-search-input').style.width = '330px'
+    document.querySelector('.mobile-search-input').style.opacity = 1
+    document.querySelector('.search-mobile').style.right = '330px'
+  }
+
+  closeSearch() {
+    document.querySelector('.mobile-search-input').classList.add('d-none')
+    document.querySelector('.close-search-btn').classList.add('d-none')
+    document.querySelector('.mobile-search-input').style.width = '0px'
+    document.querySelector('.mobile-search-input').style.opacity = 0
+    document.querySelector('.search-mobile').style.right = '25px'
+
+  }
+  
   render () {
     return <div className="search-mobile d-lg-none">
-      <a>
+      <a onClick={this.openSearch}>
         <Icons w="32" h="32" name="search"/>
       </a>
+      <input className="mobile-search-input d-none" onKeyPress={this.props.keyPress} onBlur={this.props.func} placeholder="Pesquisa"></input>
+      <a href="#" onClick={this.closeSearch} className="rounded-circle font-weight-bold close-search-btn d-none">X</a>
     </div>
   }
 }
@@ -148,6 +173,27 @@ class App extends Component {
     });
   }
 
+  search(search) {
+    document.querySelector('body').style.overflow = "";
+    const url = 'https://newsapi.org/v2/everything?q='+this.state.searchText+'&apiKey=21bcf68c77f64b86915d5942e5cfff19';
+    fetch(url)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
+                data: responseJson,
+                searchText: ''
+            });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+  }
+
+  handleChange = (e) => {
+    this.setState({searchText: e.target.value, data: []});
+  }
+
+  
   getData(news) {
     
     document.querySelector('body').style.overflow = "";
@@ -168,10 +214,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData('br');
+     this.getData('br');
+  }
+
+  handleKeyPress (e) {
+    if(e.key == 'Enter'){
+      document.querySelector('.search-input').blur();
+      document.querySelector('.mobile-search-input').blur();
+    }
   }
 
   render() {
+    
+    if(this.state.searchText)
+      this.search(this.state.searchText);
+
     if(this.state.data.articles) {
       const { data, currentPage, newsPerPage } = this.state;
 
@@ -204,7 +261,7 @@ class App extends Component {
 
       return (
         <div className="App">
-          <div className="d-lg-none pt-3 pl-4 position-fixed z-index-2 float-left">
+          <div className="d-lg-none pl-4 position-fixed z-index-2 mobile-menu-btn float-left">
             <MenuMobile func={this.getData.bind(this)}/>
           </div>
           <div className="App-header">
@@ -212,12 +269,12 @@ class App extends Component {
             <div className="row justify-content-center">
               <img src={logo} className="App-logo" alt="logo" />
               <div>
-                <input id="search" className="search-input d-none d-lg-block"/>
+                <input id="search" onKeyPress={this.handleKeyPress} onBlur={this.handleChange} className="search-input d-none d-lg-block"/>
               </div>
             </div>
             <Menu func={this.getData.bind(this)} />
           </div>
-          <SearchMobile />
+          <SearchMobile keyPress={this.handleKeyPress.bind(this)} func={this.handleChange.bind(this)}/>
           <div className="container mt-0 mt-lg-5">
             <div className="row justify-content-center">
               {renderCards}
