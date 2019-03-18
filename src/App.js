@@ -120,7 +120,8 @@ class Card extends Component {
   render () {    
     var d = new Date(this.props.data.publishedAt.slice(0, this.props.data.publishedAt.indexOf('T')).replace(/-/g, '/'))
     var dateofArticle = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
-    return <div onClick={() => this.redirect(this.props.data.url)} className={"card p-0 col-12 col-lg-"+ this.props.colSize +" mb-3 ml-3 shadow"}>
+    return <div className={"col-12 col-lg-"+ this.props.colSize +" mb-3"}>
+        <div onClick={() => this.redirect(this.props.data.url)} className="card shadow h-100">
             <img src={this.props.data.urlToImage} className="card-img-top" alt="NewsImage" />
             <div className="card-body p-0">
               {/* <img src={this.props.data.urlToImage} className="w-100" alt="NewsImage" /> */}
@@ -140,6 +141,7 @@ class Card extends Component {
             </div>
             </div>
           </div>
+        </div> 
   }
 }
 
@@ -238,11 +240,11 @@ class App extends Component {
 
       const renderCards = currentNews.map((news, idx) => {
         if(idx < 2)
-          return <Card key={idx} data={news} colSize="5"/>;
+          return <Card key={idx} data={news} colSize="6"/>;
         else if (idx >= 2 && idx < 5)
-          return <Card key={idx} data={news} colSize="3"/>;
+          return <Card key={idx} data={news} colSize="4"/>;
         else
-            return <Card key={idx} data={news} colSize="5"/>;
+            return <Card key={idx} data={news} colSize="6"/>;
       });
 
       const pageNumbers = [];
