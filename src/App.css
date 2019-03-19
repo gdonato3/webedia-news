@@ -15,7 +15,8 @@ body {
 }
 
 .App-header img {
-  margin-top: -63px;
+  position: absolute;
+  top: 0
 }
 .App-link {
   color: #61dafb;
@@ -26,7 +27,6 @@ body {
   border: none;
   box-shadow: 0 3px 5px gainsboro;
   padding: 5px;
-  margin-top: 16px;
   margin-left: 106px;
   position: absolute;
 }
@@ -66,6 +66,16 @@ body {
 
 .mobile-menu-btn {
   padding-top: 20px;
+}
+
+
+.header-bg {
+  width: 110%!important;
+  background: whitesmoke;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .z-index-2 {  
@@ -133,7 +143,7 @@ body {
   position: fixed;
   z-index: 2;
   width: 50px;
-  transition: all 1s ease;
+  transition: all 0.6s ease;
 }
 
 .pagination-button{
@@ -149,15 +159,6 @@ body {
 .pagination-button.active{
   background: #7da4e8;
   color: white !important;
-}
-
-.header-bg {
-  width: 110%!important;
-  background: whitesmoke;
-  height: 70px;
-  position: fixed;
-  top: 0;
-  z-index: 1;
 }
 
 .card {
@@ -191,10 +192,10 @@ body {
     object-fit: cover;
   }
 }
-  
+
 @media only screen and (max-width: 992px) {
   .App-header img {
-    margin-top: -130px;
+    margin-top: 10px;
     z-index: 1;
     position: fixed;
   }

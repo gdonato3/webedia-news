@@ -37,7 +37,7 @@ class MenuMobile extends Component {
     document.querySelector('.close-menu-btn').classList.add("d-none");
     document.querySelector('body').style.overflow = "";
     document.querySelector('.App-header img').style.zIndex = 1;
-    document.querySelector('.search-mobile').style.zIndex = 1;
+    document.querySelector('.search-mobile').style.zIndex = 2;
     document.querySelector('.header-bg').style.zIndex = 1;
   }
 
@@ -83,9 +83,20 @@ class SearchMobile extends Component {
   openSearch() {
     document.querySelector('.mobile-search-input').classList.remove('d-none')
     document.querySelector('.close-search-btn').classList.remove('d-none')
-    document.querySelector('.mobile-search-input').style.width = '330px'
     document.querySelector('.mobile-search-input').style.opacity = 1
-    document.querySelector('.search-mobile').style.right = '330px'
+
+    if (window.screen.availWidth < 375) {
+      document.querySelector('.search-mobile').style.right = '238px'
+      document.querySelector('.mobile-search-input').style.width = '238px'
+    }
+    else if(window.screen.availWidth < 425) {
+      document.querySelector('.search-mobile').style.right = '296px'
+      document.querySelector('.mobile-search-input').style.width = '296px'
+    }
+    else {
+      document.querySelector('.search-mobile').style.right = '330px'
+      document.querySelector('.mobile-search-input').style.width = '330px'
+    }
   }
 
   closeSearch() {
@@ -147,7 +158,7 @@ class Card extends Component {
 
 class Menu extends Component {
   render () {
-    return <div className="menu p-3 d-none d-lg-block">
+    return <div className="menu p-3 mt-5 d-none d-lg-block">
       <button className="btn text-uppercase text-blue" href="#" onClick={() => this.props.func('br')}>Notícias em Destaque</button>
       <button className="btn text-uppercase text-blue" href="#" onClick={() => this.props.func('br')}>Notícias do Brasil</button>
       <button className="btn text-uppercase text-blue" href="#" onClick={() => this.props.func('us')}>Notícias dos EUA</button>
