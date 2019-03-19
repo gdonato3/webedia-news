@@ -262,7 +262,7 @@ class App extends Component {
         );
       });
       if(this.state.data.articles.length == 0)
-        var noData = <div className="text-center">
+        var noData = <div className="text-center text-muted font-italic">
                         <h4>Sem dados para exibir</h4>
                       </div>
 
