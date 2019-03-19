@@ -175,7 +175,7 @@ class App extends Component {
     });
   }
 
-  search(search) {
+  search() {
     document.querySelector('body').style.overflow = "";
     const url = 'https://newsapi.org/v2/everything?q='+this.state.searchText+'&apiKey=21bcf68c77f64b86915d5942e5cfff19';
     fetch(url)
@@ -192,7 +192,8 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({searchText: e.target.value, data: []});
+    if(e.target.value != '')
+      this.setState({searchText: e.target.value, data: []});
   }
 
   
@@ -260,6 +261,10 @@ class App extends Component {
           </a>
         );
       });
+      if(this.state.data.articles.length == 0)
+        var noData = <div className="text-center">
+                        <h4>Sem dados para exibir</h4>
+                      </div>
 
       return (
         <div className="App">
@@ -279,6 +284,7 @@ class App extends Component {
           <SearchMobile keyPress={this.handleKeyPress.bind(this)} func={this.handleChange.bind(this)}/>
           <div className="container mt-0 mt-lg-5">
             <div className="row justify-content-center">
+              {noData}
               {renderCards}
             </div>
           </div>
